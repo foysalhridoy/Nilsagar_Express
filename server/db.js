@@ -62,27 +62,31 @@ const defaultDb = {
   ]
 };
 
+let memoryDb = null;
+
 function readDb() {
+  if (memoryDb) return memoryDb;
   try {
-    if (!fs.existsSync(DB_FILE)) {
-      fs.writeFileSync(DB_FILE, JSON.stringify(defaultDb, null, 2), 'utf-8');
-      return defaultDb;
+    if (fs.existsSync(DB_FILE)) {
+      const raw = fs.readFileSync(DB_FILE, 'utf-8');
+      memoryDb = JSON.parse(raw);
+      return memoryDb;
     }
-    const raw = fs.readFileSync(DB_FILE, 'utf-8');
-    return JSON.parse(raw);
   } catch (err) {
-    console.error('Error reading db.json:', err);
-    return defaultDb;
+    // Read fallback
   }
+  memoryDb = JSON.parse(JSON.stringify(defaultDb));
+  return memoryDb;
 }
 
 function writeDb(data) {
+  memoryDb = data;
   try {
     fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), 'utf-8');
     return true;
   } catch (err) {
-    console.error('Error writing db.json:', err);
-    return false;
+    // Read-only filesystem in serverless environments (Vercel)
+    return true;
   }
 }
 

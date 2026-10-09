@@ -143,11 +143,15 @@ app.post('/api/logs', (req, res) => {
 // Serve frontend static files
 app.use(express.static(__dirname));
 
-app.listen(PORT, () => {
-  console.log(`=======================================================`);
-  console.log(`🚆 Nilsagar Express (Saidpur -> Dhaka) Train Game Server`);
-  console.log(`   Running at: http://localhost:${PORT}`);
-  console.log(`   Timetable API: http://localhost:${PORT}/api/timetable`);
-  console.log(`   Stations API: http://localhost:${PORT}/api/stations`);
-  console.log(`=======================================================`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`=======================================================`);
+    console.log(`🚆 Nilsagar Express (Saidpur -> Dhaka) Train Game Server`);
+    console.log(`   Running at: http://localhost:${PORT}`);
+    console.log(`   Timetable API: http://localhost:${PORT}/api/timetable`);
+    console.log(`   Stations API: http://localhost:${PORT}/api/stations`);
+    console.log(`=======================================================`);
+  });
+}
+
+module.exports = app;

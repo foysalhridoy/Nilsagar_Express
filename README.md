@@ -1,4 +1,4 @@
-# 🚆 Nilsagar Express (সৈয়দপুর ➔ ঢাকা) — Full-Stack Pixel Train Journey Game
+# 🚆 Nilsagar Express (সৈয়দপুর ➔ ঢাকা) - Full-Stack Pixel Train Journey Game
 
 বাংলাদেশ রেলওয়ের **৭৬৬ নীলসাগর এক্সপ্রেস** (Saidpur to Dhaka Junction) ট্রেনের বাস্তব সময়সূচী নিয়ে তৈরি একটি ফুল-স্ট্যাক পিক্সেল-আর্ট ট্রেন সিমুলেশন গেম।
 
@@ -46,7 +46,7 @@ npm start
 
 ### ৩. ব্রাউজারে প্রবেশ করুন:
 ```
-http://localhost:3000
+http://nilsagarexp.vercel.app
 ```
 
 > **নোট**: সার্ভার ছাড়া সরাসরি `index.html` ডাবল ক্লিক করে ফাইল হিসেবেও গেমটি উপভোগ করা যাবে।
