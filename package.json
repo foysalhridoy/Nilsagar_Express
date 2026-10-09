@@ -1,0 +1,25 @@
+{
+  "name": "pixel-art-train-journey-game",
+  "version": "1.0.0",
+  "description": "Saidpur to Dhaka Intercity Pixel Train Journey - Full Stack Web Game",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "pixel-art",
+    "train-game",
+    "bangladesh-railway",
+    "saidpur-to-dhaka",
+    "nilsagar-express",
+    "canvas-game",
+    "full-stack"
+  ],
+  "author": "Md. Ferdous Foysal Hridoy",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}
