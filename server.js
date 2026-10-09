@@ -141,7 +141,36 @@ app.post('/api/logs', (req, res) => {
 });
 
 // Serve frontend static files
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(__dirname));
+
+app.get('/', (req, res) => {
+  const possiblePaths = [
+    path.join(__dirname, 'public', 'index.html'),
+    path.join(__dirname, 'index.html'),
+    path.join(process.cwd(), 'public', 'index.html'),
+    path.join(process.cwd(), 'index.html')
+  ];
+  for (const p of possiblePaths) {
+    if (fs.existsSync(p)) return res.sendFile(p);
+  }
+  res.status(404).send('Not Found');
+});
+
+app.use((req, res, next) => {
+  if (req.method === 'GET' && !req.path.startsWith('/api')) {
+    const possiblePaths = [
+      path.join(__dirname, 'public', 'index.html'),
+      path.join(__dirname, 'index.html'),
+      path.join(process.cwd(), 'public', 'index.html'),
+      path.join(process.cwd(), 'index.html')
+    ];
+    for (const p of possiblePaths) {
+      if (fs.existsSync(p)) return res.sendFile(p);
+    }
+  }
+  next();
+});
 
 if (require.main === module) {
   app.listen(PORT, () => {
